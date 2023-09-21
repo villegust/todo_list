@@ -1,0 +1,76 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  background-color: #101820;
+  min-height: 100vh;
+  padding: 50px;
+  color: #ffafa2;
+}
+.app .todolist {
+  padding: 30px 100px 100px 100px;
+  background-color: rgba(136, 136, 136, 0.137254902);
+  border: 2px solid rgba(254, 231, 21, 0.4784313725);
+  border-radius: 20px;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.app .title {
+  color: #f1f1f1;
+}
+.app .form {
+  margin: 10px 0 40px 0;
+  align-items: center;
+}
+.app .input {
+  background-color: transparent;
+  border: 2px solid #FEE715;
+  color: #f1f1f1;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 22px;
+  font-family: inherit;
+}
+.app .submit {
+  background-color: transparent;
+  border: 2px solid #FEE715;
+  color: #f1f1f1;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 22px;
+  margin-left: 8px;
+  font-family: inherit;
+  cursor: pointer;
+}
+.app .submit:hover {
+  background-color: #fcfcfc;
+  color: #383838;
+  border: 2px solid #52d316;
+  padding: 10px;
+}
+.app .todo {
+  text-align: left;
+  margin-top: 8px;
+  background-color: transparent;
+  border: 2px solid #FEE715;
+  color: #f1f1f1;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 22px;
+  font-family: inherit;
+}
+.app .todo .todo-delete {
+  float: right;
+  padding: 0px 4px;
+  cursor: pointer;
+}
+.app .todo .todo-delete:hover {
+  background-color: rgba(97, 97, 97, 0.3882352941);
+  border: 2px solid red;
+  border-radius: 6px;
+}/*# sourceMappingURL=main.css.map */

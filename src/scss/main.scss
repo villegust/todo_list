@@ -1,0 +1,85 @@
+@import "./variables";
+
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.app {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background-color: $backgroundColor;
+    min-height: 100vh;
+    padding: 50px;
+    color: #ffafa2;
+    .todolist{
+        padding:  30px 100px 100px 100px;
+        background-color: #88888823;
+        border: 2px solid #fee7157a;
+        border-radius: 20px;
+        height: fit-content;
+    }
+    .title {
+        color: $secondaryColor;
+    }
+    .form {
+        margin: 10px 0 40px 0 ;
+        align-items: center;
+    }
+    
+    .input {
+        background-color: transparent;
+        border: 2px solid $mainColor;
+        color: $secondaryColor;
+        padding: 10px;
+        border-radius: 6px;
+        font-size: 22px;
+        font-family: inherit;
+    }
+    
+    .submit {
+        background-color: transparent;
+        border: 2px solid $mainColor;
+        color: $secondaryColor;
+        padding: 10px;
+        border-radius: 6px;
+        font-size: 22px;
+        margin-left: 8px;
+        font-family: inherit;
+        cursor: pointer;
+        &:hover {
+            background-color: #fcfcfc;
+            color: #383838;
+            border: 2px solid #52d316;
+            padding: 10px;
+        }
+    }
+    
+    .todo {
+        text-align: left;
+        margin-top: 8px;
+        background-color: transparent;
+        border: 2px solid $mainColor;
+        color: $secondaryColor;
+        padding: 10px;
+        border-radius: 6px;
+        font-size: 22px;
+        font-family: inherit;
+        .todo-delete {
+            float: right;
+            padding: 0px 4px;
+            cursor: pointer;
+            &:hover {
+                background-color: #61616163;
+                border: 2px solid red;
+                border-radius: 6px;
+            }
+        }
+        
+    }
+  
+}
+
+
+
