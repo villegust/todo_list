@@ -1,67 +1,89 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Todo from "./components/Todo";
 import Form from "./components/Form";
 import Title from "./components/Title";
 import "./css/main.css";
 
-const initialData = [
-  {
-    _id: 0,
-    text: "Call mom",
-  },
-  {
-    _id: 1,
-    text: "Work out",
-  },
-  {
-    _id: 2,
-    text: "Finish ReactJS talk",
-  },
-];
-
 const App = () => {
-  const getData = async (url) => {
-    const newData = await fetch(url, {
-      method: "GET",
-      headers: {
-        "content.type": "application/json",
-        Accept: "application/json",
-      },
-    }).then((res) => res.json());
-    console.log(newData);
-  };
-  getData("/api");
+  const [fetchedTodData, setFetchedTodData] = useState([]);
+  const [todoArray, setTodoArray] = useState([{}]);
   const [inputValue, setInputValue] = useState("");
-  const [todos, setTodos] = useState(initialData);
-  const handleSubmit = () => {
-    if (inputValue === "") return;
-    const newTodo = { _id: Date.now(), text: inputValue };
-    setTodos([...todos, newTodo]);
+
+  useEffect(() => {
+    fetchedData();
+  }, [todoArray]);
+
+  const fetchedData = () => {
+    fetch("/getTodos")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setFetchedTodData(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetch("/createTodo", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        todos: inputValue,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setTodoArray(data);
+      });
     setInputValue("");
   };
+
   const handleDeleteTodo = (id) => {
-    const newTodos = todos.filter((todo) => todo._id !== id);
-    setTodos(newTodos);
+    fetch(`/deleteTodos/${id}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: id,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setTodoArray(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    // const newTodos = todoArray.filter((todo) => todo._id !== id);
+    // setTodoArray(newTodos);
   };
+
   return (
-    <div className="app">
-      <div className="todolist">
-        <Title myName="Yes" />
-        <Form
-          inputValue={inputValue}
-          setInputValue={setInputValue}
-          handleSubmit={handleSubmit}
-        />
-        {todos.map((todo, index) => (
-          <Todo
-            todo={todo}
-            index={index}
-            handleDeleteTodo={handleDeleteTodo}
-            key={todo._id}
+    <>
+      <div className="app">
+        <div className="todolist">
+          <Title myName="Yes" />
+          <Form
+            inputValue={inputValue}
+            setInputValue={setInputValue}
+            handleSubmit={handleSubmit}
           />
-        ))}
+          {fetchedTodData.map((todo, index) => (
+            <Todo
+              todo={todo}
+              index={index}
+              handleDeleteTodo={handleDeleteTodo}
+              key={todo.id}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

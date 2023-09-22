@@ -4,9 +4,9 @@ const Todo = ({ todo, index, handleDeleteTodo }) => {
   return (
     <div className="todo">
       <span className="todo-text">
-        {index + 1}. {todo.text}
+        {index + 1}. {todo.todos}
       </span>
-      <span onClick={() => handleDeleteTodo(todo._id)} className="todo-delete">
+      <span onClick={() => handleDeleteTodo(todo.id)} className="todo-delete">
         x
       </span>
     </div>
